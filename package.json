@@ -1,0 +1,63 @@
+{
+  "name": "@openeagle/eaxios",
+  "version": "1.1.0",
+  "description": "Axios wrapper with user friendly error",
+  "keywords": [
+    "xhr",
+    "http",
+    "ajax",
+    "promise",
+    "node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "main": "./index.js",
+  "files": [
+    "dist",
+    "lib",
+    "index.d.ts",
+    "index.js",
+    "errors.svg"
+  ],
+  "scripts": {
+    "clean": "rimraf dist coverage lib tmp",
+    "demo": "node test/server.js",
+    "bundle": "rimraf dist && webpack",
+    "build": "rimraf lib && tsc -p tsconfig.release.json",
+    "build:watch": "tsc -w -p tsconfig.release.json",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "prerelease": "npm run build && npm run bundle",
+    "release": "semantic-release"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "~25.2.1",
+    "@types/node": "~12.12.38",
+    "@typescript-eslint/eslint-plugin": "~2.32.0",
+    "@typescript-eslint/parser": "~2.32.0",
+    "dotenv-cli": "^4.0.0",
+    "eslint": "~7.0.0",
+    "eslint-config-prettier": "~6.11.0",
+    "eslint-plugin-jest": "~23.10.0",
+    "express": "^4.17.1",
+    "jest": "~25.2.7",
+    "prettier": "~2.0.5",
+    "puppeteer": "^3.0.4",
+    "rimraf": "~3.0.2",
+    "semantic-release": "^17.3.9",
+    "serve": "^11.3.2",
+    "ts-jest": "~25.5.1",
+    "tsutils": "~3.17.0",
+    "typescript": "~3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
