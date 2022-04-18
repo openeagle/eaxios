@@ -1,4 +1,6 @@
 export interface EaxiosErrorCode {
+  UNKNOWN: string;
+  REQUEST_ABORTED: string;
   REQUEST_OFFLINE: string;
   REQUEST_TIMEOUT: string;
   SERVER_ERROR: string;
@@ -168,44 +170,45 @@ export interface EaxiosInstance {
     response: EaxiosInterceptorManager<EaxiosResponse>;
   };
   getUri(config?: EaxiosRequestConfig): string;
-  request<T = any, R = EaxiosResponse<T>>(
-    config: EaxiosRequestConfig,
-  ): Promise<R>;
-  get<T = any, R = EaxiosResponse<T>>(
+  request<ResponseData = any, RequestData = any>(
+    config: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
+  get<ResponseData = any, RequestData = any>(
     url: string,
-    config?: EaxiosRequestConfig,
-  ): Promise<R>;
-  delete<T = any, R = EaxiosResponse<T>>(
+    config?: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
+  delete<ResponseData = any, RequestData = any>(
     url: string,
-    config?: EaxiosRequestConfig,
-  ): Promise<R>;
-  head<T = any, R = EaxiosResponse<T>>(
+    config?: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
+  head<ResponseData = any, RequestData = any>(
     url: string,
-    config?: EaxiosRequestConfig,
-  ): Promise<R>;
-  options<T = any, R = EaxiosResponse<T>>(
+    config?: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
+  options<ResponseData = any, RequestData = any>(
     url: string,
-    config?: EaxiosRequestConfig,
-  ): Promise<R>;
-  post<T = any, R = EaxiosResponse<T>>(
+    config?: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
+  post<ResponseData = any, RequestData = any>(
     url: string,
-    data?: any,
-    config?: EaxiosRequestConfig,
-  ): Promise<R>;
-  put<T = any, R = EaxiosResponse<T>>(
+    data?: RequestData,
+    config?: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
+  put<ResponseData = any, RequestData = any>(
     url: string,
-    data?: any,
-    config?: EaxiosRequestConfig,
-  ): Promise<R>;
-  patch<T = any, R = EaxiosResponse<T>>(
+    data?: RequestData,
+    config?: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
+  patch<ResponseData = any, RequestData = any>(
     url: string,
-    data?: any,
-    config?: EaxiosRequestConfig,
-  ): Promise<R>;
+    data?: RequestData,
+    config?: EaxiosRequestConfig<ResponseData, RequestData>,
+  ): EaxiosPromise<ResponseData>;
 }
 
 export interface EaxiosStatic extends EaxiosInstance {
   create(config?: EaxiosRequestConfig): EaxiosInstance;
+  errorCodes: EaxiosErrorCode;
   createError(
     message: string,
     code: string,

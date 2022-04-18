@@ -4,6 +4,7 @@ import enhanceError from 'axios/lib/core/enhanceError';
 
 const EAXIOS_ERROR_CODE = {
   UNKNOWN: 'UNKNOWN',
+  REQUEST_ABORTED: 'REQUEST_ABORTED',
   REQUEST_OFFLINE: 'REQUEST_OFFLINE',
   REQUEST_TIMEOUT: 'REQUEST_TIMEOUT',
   SERVER_ERROR: 'SERVER_ERROR',
@@ -182,6 +183,7 @@ function create() {
     Object.assign(newInstance.defaults, config);
     return newInstance;
   };
+  instance.errorCodes = EAXIOS_ERROR_CODE
   instance.createError = function (message, code, response) {
     const error = new Error(message);
     error.code = String(
